@@ -1,0 +1,482 @@
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+      
+/* 允许文本框选择文字 */
+.input-box-textarea {
+    -webkit-user-select: text;
+    user-select: text;
+}
+      
+/* 文本框样式 */
+.input-box-textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid var(--slider-bg);
+    border-radius: 12px;
+    font-size: 16px;
+    min-height: 100px;
+    margin-bottom: -25px;
+    resize: none;
+    background: var(--card);
+    color: var(--text);
+    transition: all 0.3s var(--animation-curve);
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.input-box-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+}
+
+/* CSS变量定义 */
+:root {
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --background: #f0f4f8;
+    --text: #333;
+    --card: #fff;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --slider-bg: #f3f4f6;
+    --slider-text: #666;
+    --toast-bg: rgba(255, 255, 255, 0.98);
+    --toast-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --animation-curve: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+      
+/* 主题样式 */
+body.dark {
+    --primary: #60a5fa;
+    --primary-dark: #3b82f6;
+    --background: #1f2937;
+    --text: #f3f4f6;
+    --card: #374151;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --slider-bg: #4b5563;
+    --slider-text: #e5e7eb;
+    --toast-bg: rgba(55, 65, 81, 0.98);
+}      
+
+body.warm {
+    --primary: #f97316;
+    --primary-dark: #ea580c;
+    --background: #fff7ed;
+    --text: #431407;
+    --card: #fff;
+    --shadow: rgba(249, 115, 22, 0.1);
+    --slider-bg: #fed7aa;
+    --slider-text: #9a3412;
+    --toast-bg: rgba(255, 247, 237, 0.98);
+}
+
+/* 基础布局 */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    background: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    touch-action: manipulation;
+    color: var(--text);
+    transition: background-color 0.3s var(--animation-curve);
+    overflow-x: hidden;
+}
+
+html {
+    height: -webkit-fill-available;
+}
+
+/* 容器样式 */
+.container {
+    width: 100%;
+    max-width: 500px;
+    background: var(--card);
+    border-radius: 16px;
+    padding: min(25px, 5vw);
+    box-shadow: 0 4px 12px var(--shadow);
+    transition: all 0.3s var(--animation-curve);
+    margin: auto;
+}      
+      
+/* 标题样式 */
+h1 {
+    font-size: clamp(20px, 5vw, 24px);
+    text-align: center;
+    margin-bottom: 30px;
+    background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titlePulse 2s var(--animation-curve) infinite;
+    will-change: transform;
+    position: relative;
+}      
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+    border-radius: 2px;
+    animation: titleUnderline 2s var(--animation-curve) infinite;
+}
+
+/* 表单元素样式 */
+.select-box {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--slider-bg);
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    background: var(--card);
+    color: var(--text);
+    transition: all 0.3s var(--animation-curve);
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+.select-box:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
+}      
+
+/* 汽车图标 */      
+.car-icon { font-size: 42px; margin-bottom: 20px; color: #8e44ad;text-align: center;animation: titlePulse 2s var(--animation-curve) infinite;}      
+ 
+/* 车牌号输入样式 */        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #d0d7de;
+            border-color: var(--primary);
+            outline: none;
+             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+             transform: translateY(-2px);
+        }
+      
+ /* 下拉选项样式 */
+.select-box option {
+    padding: 12px;
+    font-size: 16px;
+    background: var(--card);
+    color: var(--text);
+}    
+
+/* 微信通知按钮样式 */
+.notify-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s var(--animation-curve);
+    -webkit-tap-highlight-color: transparent;
+    will-change: transform;
+}
+
+.notify-btn:active {
+    transform: scale(0.98);
+}
+
+   /* 禁用状态下按钮的样式 */
+  .disabled {
+    opacity: 0.9;
+    pointer-events: none;  /* 禁用按钮的点击事件 */
+  }
+
+  /* 灰色遮罩 */
+  .disabled::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* 80% 透明度的灰色遮罩 */
+    z-index: 1;
+  }
+
+  /* 调整按钮文本 */
+  #notifyBtn span {
+    position: relative;
+    z-index: 2;  /* 确保文本在遮罩层之上 */
+  }
+
+/* 滑块样式 */
+.call-slider {
+    width: 100%;
+    height: 50px;
+    background: var(--slider-bg);
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s var(--animation-curve);
+    touch-action: none;
+    margin-bottom: 15px;
+}
+
+.call-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--slider-text);
+    font-size: 16px;
+    z-index: 1;
+    transition: opacity 0.3s var(--animation-curve);
+    pointer-events: none;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.call-handle {
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+    border-radius: 23px;
+    z-index: 2;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: all 0.3s var(--animation-curve);
+    will-change: transform;
+}
+
+.call-handle::after {
+    content: '📞';
+    animation: handlePulse 1.5s infinite;
+    will-change: transform;
+}
+
+.call-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, 
+        rgba(59, 130, 246, 0.1),
+        rgba(59, 130, 246, 0.2));
+    transition: width 0.1s linear;
+    will-change: width;
+}
+
+/* 初始时隐藏滑块 */      
+ #callSlider {
+    display: none;  
+  }  
+      
+/* 输入框字符数样式 */      
+  .char-count {
+            text-align: right;
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 25px;
+             margin-right: 5px;
+        }      
+      
+/* 主题切换按钮样式 */
+.theme-toggles {
+    display: flex;
+    gap: 6px;
+    z-index: 100;
+    justify-content: center;
+  margin-bottom: -10px;
+}
+
+.theme-btn {
+  
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 16px;
+    background: var(--card);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: all 0.3s var(--animation-curve);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.theme-btn:hover {
+    transform: translateY(-2px);
+}
+
+.theme-btn.active {
+    background: var(--primary);
+    color: white;
+}
+  
+/* 动画 */
+@keyframes titlePulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+}
+
+@keyframes titleUnderline {
+    0%, 100% { width: 50px; opacity: 0.5; }
+    50% { width: 100px; opacity: 1; }
+}
+
+@keyframes handlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .container {
+        border-radius: 12px;
+    }
+
+    .notify-btn {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    .call-slider {
+        height: 46px;
+    }
+
+    .call-handle {
+        width: 42px;
+        height: 42px;
+    }
+
+    .toast-content {
+        padding: 20px;
+    }
+    
+    .theme-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+
+}    
+               
+ /* 已发微信字数样式 */ 
+      .notification-count {
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 20px;
+            color: #007bff;
+        }
+      
+ /* 通知剩余时间样式 */ 
+      .notification-counta {
+            text-align: center;
+            font-size: 9px;
+            color: #007bff;
+           margin-bottom: 25px;
+        } 
+
+/* 信息框背景遮罩 */
+.custom-alert {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 弹窗内容 */
+.custom-alert-content {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 标题 */
+.custom-alert-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 消息内容 */
+.custom-alert-message {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+
+/* 关闭按钮 */
+.custom-alert-close-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.custom-alert-close-btn:hover {
+    background-color: #0056b3;
+}

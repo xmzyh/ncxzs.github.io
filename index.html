@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>挪车小助手</title>
+       <!-- 引入样式文件 -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- 主容器 -->
+  <!-- 输入车牌号 -->
+ <div class="container" id="inputContainer">
+        <div class="car-icon">&#128663;</div>
+        <h1>请输入车牌号</h1>
+        <input type="text" id="licensePlateInput" placeholder="如：京A88888">
+        <button class="btna notify-btn" onclick="checkLicensePlate()">确认车牌号</button>
+        <p id="errorMessage" style="color: red; text-align: center; display: none;">未找到该车牌号，请检查并重新输入。</p>
+    </div>
+
+ <div class="container" id="notificationContainer" style="display:none;">
+    <h1>临时停车 💙 请多关照</h1>
+   
+   <!-- 消息模板选择 -->
+    <select id="messageTemplate" class="select-box" onchange="useTemplateFromSelect()">
+        <option value="" disabled selected>点我选择通知模板</option>
+        <option value="您好，有人需要您挪车，请及时赶来。">🚗默认模板</option>
+        <option value="您好，您的车辆阻碍他人通行，请尽快挪车，谢谢配合。">⚡️礼貌模板</option>
+        <option value="情况紧急！情况紧急！请火速赶来挪车！">🚨紧急模板</option>
+        <option value="您的车辆停放时未完全关闭车窗。为避免雨水进入车内或丢失物品，请尽快检查并关闭车窗！">☔关窗提醒</option>
+    </select>
+
+ <!-- 字数限制 -->
+        <textarea id="messageInput" class="input-box-textarea" maxlength="50" placeholder="请点我输入通知内容" oninput="updateCharCount()"></textarea>
+        <div id="charCount" class="char-count">0/50字</div>
+
+   <!-- 通知按钮 -->  
+        <button id="notifyBtn" class="notify-btn" onclick="notifyOwner() ">微信通知车主📱</button>
+
+   <!-- 拨打电话滑块 -->
+        <div id="callSlider" class="call-slider">
+            <div class="call-text">向右滑动拨打电话</div>
+            <div id="callHandle" class="call-handle"></div>
+            <div id="callProgress" class="call-progress"></div>
+        </div>
+
+   <!-- 底部提示文字 -->
+    <div class="notification-count" id="notificationCountDisplay">已发送微信通知次数：0/5</div> <!-- 显示发送次数 -->
+   <div class="notification-counta" id="timeUntilReset">微信通知重置剩余时间：  分钟  秒</div>
+   
+   <!-- 主题切换按钮组 -->
+    <div class="theme-toggles">
+        <button class="theme-btn active" data-theme="light">☀️</button>
+        <button class="theme-btn" data-theme="warm">🌅</button>
+        <button class="theme-btn" data-theme="dark">🌙</button>
+    </div>
+   
+<!-- 自定义Alert弹窗 -->
+<div id="customAlert" class="custom-alert">
+    <div class="custom-alert-content">
+        <span id="alertTitle" class="custom-alert-title"></span>
+        <p id="alertMessage" class="custom-alert-message"></p>
+        <button id="alertCloseBtn" class="custom-alert-close-btn">关闭</button>
+    </div>
+</div>
+    <!-- 引入JavaScript文件 -->
+    <script src="dma.js"></script>
+    <script src="dmb.js"></script>
+    <script src="dmc.js"></script>
+    <script src="dmd.js"></script>	
+</body>
+</html>
